@@ -1,11 +1,20 @@
-
     {% extends "layout.html" %}
-   
+
     {% block content %}
-    <h2>New User Registration</h2>
 
     <div class="container">
         <form name="register" action="register.php" method="get">
+          <fieldset class='form-group'>
+            <legend>New User Registration</legend>
+            {{ form.hidden_tag() }}
+              <p>
+                {{ form.email.label }} <br>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                  <span class='error-message'>{{ error }}</span>
+                {% endfor %}
+              </p>
+
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
             <br>
@@ -16,6 +25,7 @@
             <input type="password" placeholder="Enter Password" name="password" required>
             <br class="clear">
             <input class="btn-submit" type="submit" name="submit">
+          </fieldset>
         </form>
     </div>
     {% endblock %}
